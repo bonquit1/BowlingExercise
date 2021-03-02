@@ -13,9 +13,9 @@ namespace BowlingExercise.Models
             FrameNumber = (i + 1).ToString(),
             FrameScore = "0",
             HasShot3 = (i == 9),
-            Shot1Text = lstPerfectScores[i].Item1,
-            Shot2Text = lstPerfectScores[i].Item2,
-            Shot3Text = lstPerfectScores[i].Item3
+            Shot1Text = lstIncomplete[i].Item1,
+            Shot2Text = lstIncomplete[i].Item2,
+            Shot3Text = lstIncomplete[i].Item3
         };
 
         public static List<(string, string, string)> lstSampleScores = new List<(string, string, string)>()
@@ -44,6 +44,20 @@ namespace BowlingExercise.Models
             ("X","-","-"),
             ("X","-","-"),
             ("X","X","X")
+        };
+
+        public static List<(string, string, string)> lstIncomplete = new List<(string, string, string)>()
+        {
+            ("X","-","-"),
+            ("X","-","-"),
+            ("X","-","-"),
+            ("X","-","-"),
+            ("X","-","-"),
+            ("X","-","-"),
+            ("X","-","-"),
+            ("-","-","-"),
+            ("-","-","-"),
+            ("-","-","-")
         };
     }
 }

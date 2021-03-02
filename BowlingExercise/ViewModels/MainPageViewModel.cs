@@ -75,7 +75,7 @@ namespace BowlingExercise.ViewModels
         private async void CalculateScores()
         {
             BowlingScores = _bowlingService.CalculateScores(BowlingScores);
-            TotalScore = Convert.ToInt32(BowlingScores.Select(x => x.FrameScore).LastOrDefault());
+            TotalScore = Convert.ToInt32(BowlingScores.Select(x => x.FrameScore).Where(x => x != "-").LastOrDefault());
         }
 
         

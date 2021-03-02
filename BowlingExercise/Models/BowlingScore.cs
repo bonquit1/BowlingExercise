@@ -35,7 +35,7 @@ namespace BowlingExercise.Models
                 else if (value.ToLower() == "x")
                     Shot1 = 20;
                 else
-                    Shot2 = 0; // i.e. "-"
+                    Shot1 = 0; // i.e. "-"
             }
         }
 

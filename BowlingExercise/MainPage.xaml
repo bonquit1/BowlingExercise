@@ -11,18 +11,24 @@
             BackgroundColor="#FFAD00"
             CornerRadius="0">
             <Label
-                FontSize="36"
+                FontSize="{OnIdiom 36,
+                               Phone=18,
+                               Desktop=36}"
                 HorizontalTextAlignment="Center"
                 Text="Bowling Exercise"
                 TextColor="White" />
         </Frame>
         <Label
-            Padding="30,10,30,10"
-            FontSize="Title"
+            Padding="20,5,20,0"
+            FontSize="{OnIdiom Title,
+                               Phone=10,
+                               Desktop=Title}"
             Text="Bowling Scoring Application" />
         <Label
-            Padding="30,0,30,0"
-            FontSize="16"
+            Padding="20,0"
+            FontSize="{OnIdiom Title,
+                               Phone=10,
+                               Desktop=Title}"
             Text="As a bowler, I want to be able to enter a list of bowling frame scores so that I can see the progress and total score of my game." />
 
         <RefreshView

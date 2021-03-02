@@ -43,8 +43,17 @@ namespace BowlingExercise.Services
                         second = scores[i].Shot2;
 
                     //Append to end
-                    int prev = (i > 0) ? Convert.ToInt32(scores[i - 1].FrameScore) : 0;
-                    scores[i].FrameScore = (prev + first + second).ToString();
+                    if ((i > 0) && scores[i - 1].FrameScore != "-")
+                    {
+                        int prev = (i > 0) ? Convert.ToInt32(scores[i - 1].FrameScore) : 0;
+                        scores[i].FrameScore = (prev + first + second).ToString();
+
+                        //if (string.IsNullOrEmpty(scores[i].Shot1Text) || string.IsNullOrEmpty(scores[i].Shot2Text))
+                        //    scores[i].FrameScore = "-";
+                    }
+                    //else
+                    //    scores[i].FrameScore = "-";
+
                 }
                 else
                 {
@@ -66,10 +75,16 @@ namespace BowlingExercise.Services
                     if (scores[i].Shot3 == 20)
                         num3 = 10;
 
-                    scores[i].FrameScore = (Convert.ToInt32(scores[i - 1].FrameScore) + num1 + num2 + num3).ToString();
-                }
+                    if (scores[i - 1].FrameScore != "-")
+                    {
+                        scores[i].FrameScore = (Convert.ToInt32(scores[i - 1].FrameScore) + num1 + num2 + num3).ToString();
 
-                
+                        //if (string.IsNullOrEmpty(scores[i].Shot1Text) || string.IsNullOrEmpty(scores[i].Shot2Text) || string.IsNullOrEmpty(scores[i].Shot3Text))
+                        //    scores[i].FrameScore = "-";
+                    }
+                    else
+                        scores[i].FrameScore = "-";
+                }
             }
 
             return scores;
