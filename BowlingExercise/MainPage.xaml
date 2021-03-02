@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BowlingExercise.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Visual="Material">
+
+    <StackLayout>
+        <Frame
+            Padding="24"
+            BackgroundColor="#FFAD00"
+            CornerRadius="0">
+            <Label
+                FontSize="36"
+                HorizontalTextAlignment="Center"
+                Text="Bowling Exercise"
+                TextColor="White" />
+        </Frame>
+        <Label
+            Padding="30,10,30,10"
+            FontSize="Title"
+            Text="Bowling Scoring Application" />
+        <Label
+            Padding="30,0,30,0"
+            FontSize="16"
+            Text="As a bowler, I want to be able to enter a list of bowling frame scores so that I can see the progress and total score of my game." />
+
+        <RefreshView
+            Command="{Binding LoadCommand}"
+            HeightRequest="{OnIdiom 80,
+                                    Phone=300,
+                                    Desktop=80}"
+            IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+            <CollectionView
+                ItemSizingStrategy="MeasureAllItems"
+                ItemsLayout="HorizontalList"
+                ItemsSource="{Binding BowlingScores}"
+                SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            Margin="10"
+                            Padding="0"
+                            BorderColor="Black">
+                            <Grid
+                                ColumnDefinitions="*,*"
+                                ColumnSpacing="20"
+                                RowDefinitions="*,*,*"
+                                WidthRequest="{OnIdiom 300,
+                                                       Phone=150,
+                                                       Desktop=300}">
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="0"
+                                    Padding="5"
+                                    BorderColor="Black">
+                                    <Label
+                                        Margin="0"
+                                        Padding="0"
+                                        FontAttributes="Bold"
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{Binding FrameNumber}"
+                                        VerticalOptions="Center" />
+                                </Frame>
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Margin="20,0,20,20"
+                                    HeightRequest="{OnIdiom 60,
+                                                            Phone=300,
+                                                            Desktop=60}"
+                                    HorizontalOptions="Center"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Center">
+                                    <Entry
+                                        Margin="0"
+                                        HorizontalTextAlignment="Start"
+                                        IsReadOnly="False"
+                                        Text="{Binding Shot1Text, Mode=TwoWay}"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center" />
+                                    <Entry
+                                        Margin="0"
+                                        HorizontalTextAlignment="Start"
+                                        IsReadOnly="False"
+                                        Text="{Binding Shot2Text, Mode=TwoWay}"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center" />
+                                    <Entry
+                                        Margin="0"
+                                        HorizontalTextAlignment="Start"
+                                        IsReadOnly="False"
+                                        IsVisible="{Binding HasShot3, Mode=TwoWay}"
+                                        Text="{Binding Shot3Text, Mode=TwoWay}"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center" />
+                                </StackLayout>
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="15"
+                                    Text="{Binding FrameScore, Mode=TwoWay}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+
+        <Label
+            Padding="30,24,30,0"
+            FontSize="30"
+            HeightRequest="460">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Total Score: " />
+                        <Span
+                            FontAttributes="Bold"
+                            FontSize="30"
+                            Text="{Binding TotalScore}" />
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
+
+        <Button
+            BackgroundColor="Black"
+            Command="{Binding CalculateScoresCommand}"
+            FontSize="{OnIdiom 30,
+                               Phone=20,
+                               Desktop=30}"
+            HeightRequest="{OnIdiom 100,
+                                    Phone=50,
+                                    Desktop=100}"
+            Text="Calculate"
+            TextColor="White" />
+
+    </StackLayout>
+
+</ContentPage>
